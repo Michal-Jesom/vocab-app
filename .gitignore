@@ -25,3 +25,4 @@ cert.crt
 *.njsproj
 *.sln
 *.sw?
+upload-to-github.mjs
