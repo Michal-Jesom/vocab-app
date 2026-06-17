@@ -18,11 +18,6 @@ function hasCJK(s: string): boolean {
   return CJK_RE.test(s)
 }
 
-function startsWithCJK(s: string): boolean {
-  const first = s.charAt(0)
-  return CJK_RE.test(first)
-}
-
 // Strip leading numbers, bullets, markers
 // E.g. "1. word def", "(1) word def", "- word def", "① word def", "·word def"
 function stripPrefix(line: string): string {
@@ -50,7 +45,7 @@ const PHONETIC_PAREN_RE = /^(.+?)\s+[\(\[](.+?)[\)\]]\s+(.+)$/
 
 // Split at CJK boundary: "english chinese..."
 // Look for first CJK char, split with context
-function splitAtCJK(line: string): { word: string; definition: string } | null {
+function splitAtCJK(line: string): ParsedWord | null {
   const idx = line.search(CJK_RE)
   if (idx <= 0) return null
 
@@ -64,7 +59,7 @@ function splitAtCJK(line: string): { word: string; definition: string } | null {
   // Clean word - remove trailing symbols
   const cleanWord = word.replace(/[,，;；:：、。·]+$/, '').trim()
 
-  return { word: cleanWord, definition }
+  return { word: cleanWord, phonetic: '', definition }
 }
 
 // Try various separator patterns, return parsed or null

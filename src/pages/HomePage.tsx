@@ -185,7 +185,7 @@ export default function HomePage() {
             { key: 'learning', label: '学习中', count: stageCounts.learning, color: 'from-orange-400 to-orange-500', icon: '📖' },
             { key: 'review', label: '复习', count: stageCounts.review, color: 'from-blue-400 to-blue-500', icon: '🔄' },
             { key: 'mastered', label: '已掌握', count: stageCounts.mastered, color: 'from-green-400 to-green-500', icon: '⭐' },
-          ].map(({ key, label, count, color, icon }) => (
+          ].map(({ key, label, count, icon }) => (
             <button
               key={key}
               onClick={() => navigate(`/words/${key}`)}
