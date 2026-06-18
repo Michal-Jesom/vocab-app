@@ -18,7 +18,24 @@ export default function SWPrompt() {
 
     const register = async () => {
       try {
-        const reg = await navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        // Don't register manually — vite-plugin-pwa handles it via registerSW.js
+        // Just observe the existing registration
+        const reg = await navigator.serviceWorker.getRegistration()
+
+        if (!reg) {
+          // No registration yet, check again later
+          setTimeout(() => {
+            navigator.serviceWorker.getRegistration().then(r => {
+              if (r?.active) {
+                setStatus('ready')
+                setMessage('已就绪，可离线使用')
+                timeout = setTimeout(() => setDismissed(true), 4000)
+              }
+            })
+          }, 3000)
+          return
+        }
+
         setMessage('正在缓存离线资源...')
         setStatus('installing')
 

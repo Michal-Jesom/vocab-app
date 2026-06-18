@@ -40,7 +40,12 @@ export default function HomePage() {
     setLoading(false)
   }
 
-  useEffect(() => { refreshData() }, [getTotalCount, getMasteredCount, settings])
+  useEffect(() => {
+    refreshData().catch(err => {
+      console.error('Failed to load homepage data:', err)
+      setLoading(false)
+    })
+  }, [getTotalCount, getMasteredCount, settings])
 
   const handleCheckin = async () => {
     await checkin()

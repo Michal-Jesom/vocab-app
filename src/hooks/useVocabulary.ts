@@ -1,9 +1,7 @@
 import { useState, useCallback } from 'react'
 import { db } from '../db/database'
 import { createInitialState } from '../engine/sm2'
-import { parseDocxFile, type ParseResult } from '../parser/docxParser'
-import { parsePdfFile } from '../parser/pdfParser'
-import { parseImageFile } from '../parser/imageParser'
+import type { ParseResult } from '../parser/docxParser'
 
 type FileType = 'docx' | 'pdf' | 'image'
 
@@ -31,10 +29,13 @@ export function useVocabulary() {
 
       if (ft === 'image') {
         setOcrProgress('正在 OCR 识别文字...')
+        const { parseImageFile } = await import('../parser/imageParser')
         result = await parseImageFile(file)
       } else if (ft === 'pdf') {
+        const { parsePdfFile } = await import('../parser/pdfParser')
         result = await parsePdfFile(file)
       } else {
+        const { parseDocxFile } = await import('../parser/docxParser')
         result = await parseDocxFile(file)
       }
 

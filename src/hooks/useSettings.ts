@@ -28,10 +28,15 @@ export function useSettings() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getSettings().then(s => {
-      setSettings(s)
-      setLoading(false)
-    })
+    getSettings()
+      .then(s => {
+        setSettings(s)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error('Failed to load settings:', err)
+        setLoading(false)
+      })
   }, [])
 
   const updateSettings = useCallback(async (partial: Partial<LearningSettings>) => {
