@@ -6,7 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
 export default defineConfig({
-  base: '/vocab-app/',
+  base: './',
   plugins: [
     basicSsl(),
     react(),

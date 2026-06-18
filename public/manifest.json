@@ -2,8 +2,8 @@
   "name": "背单词 - 智能记忆",
   "short_name": "背单词",
   "description": "基于艾宾浩斯遗忘曲线的智能背单词应用",
-  "start_url": "/vocab-app/",
-  "scope": "/vocab-app/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#f0f4ff",
@@ -14,13 +14,13 @@
   "categories": ["education", "productivity"],
   "icons": [
     {
-      "src": "/vocab-app/icon-192.png",
+      "src": "./icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/vocab-app/icon-512.png",
+      "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
